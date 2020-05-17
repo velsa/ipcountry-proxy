@@ -104,7 +104,7 @@ const getCountryByIP = async (ip: string): Promise<IAPIInfo> => {
         const endTime = process.hrtime(startTime);
         const apiLatency = (endTime[0] * 1000000000 + endTime[1]) / 1000000;
 
-        ipCache[ipBClass] = res.data.country_name;
+        ipCache[ipBClass] = res.data[vendorInfo.countryField];
         const ret = {
           success: true,
           countryName: res.data[vendorInfo.countryField],
