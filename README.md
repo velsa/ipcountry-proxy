@@ -1,6 +1,7 @@
 ## What is ipcountry-proxy?
 
-A simply nodejs app for proxying API requests to external IP to Country APIs.
+A simple nodejs app for proxying API requests to external "IP to Country" APIs.
+
 It allows adding any number of API vendors and limit number of requests per hour per API vendor.
 
 ## Requirements
@@ -24,7 +25,7 @@ npm install
 npm start
 ```
 
-In debug mode (will show additional data in each API response)
+To run the app in debug mode (will show additional data in each API response):
 
 ```bash
 npm run debug
@@ -40,6 +41,6 @@ Will test all routes for various scenarios
 npm run test
 ```
 
-Deploy
+## Deploy
 
 The app can be easily deployned to AWS or Netlify
