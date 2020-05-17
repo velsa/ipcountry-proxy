@@ -1,5 +1,4 @@
 import { IVendorStat } from './types';
-import env from './env';
 
 // Extract client IP from request
 export function getClientIP(req) {

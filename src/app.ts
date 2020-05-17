@@ -113,7 +113,6 @@ const getCountryByIP = async (ip: string): Promise<IAPIInfo> => {
         };
 
         updateVendorStats(apiLatency);
-        // console.log('ven', vendor, vendorStats);
         return ret;
       } catch (err) {
         return {

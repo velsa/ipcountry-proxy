@@ -22,6 +22,7 @@ describe('LAUNCH SERVER AND BASIC TEST', () => {
     done();
   });
 });
+
 describe('TEST LOCALHOST', () => {
   it('should receive localhost', async (done) => {
     const res = await request.get('/getIPCountry');
@@ -31,6 +32,7 @@ describe('TEST LOCALHOST', () => {
     done();
   });
 });
+
 describe('TEST TWO VENDORS', () => {
   it('should receive from two vendors', async (done) => {
     for (let ip of TEST_REMOTE_IPS) {
@@ -44,6 +46,7 @@ describe('TEST TWO VENDORS', () => {
     done();
   });
 });
+
 describe('GO OVER LIMIT', () => {
   it('should fail', async (done) => {
     const res = await request
@@ -53,6 +56,7 @@ describe('GO OVER LIMIT', () => {
     done();
   });
 });
+
 describe('NAIVE CACHE', () => {
   it('should receive from cache', async (done) => {
     const ip = TEST_REMOTE_IPS[0];
@@ -66,6 +70,7 @@ describe('NAIVE CACHE', () => {
     done();
   });
 });
+
 describe('METRICS', () => {
   it('should show metrics with numbers', async (done) => {
     const res = await request.get('/metrics');
