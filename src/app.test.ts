@@ -66,3 +66,17 @@ describe('NAIVE CACHE', () => {
     done();
   });
 });
+describe('METRICS', () => {
+  it('should show metrics with numbers', async (done) => {
+    const res = await request.get('/metrics');
+    expect(res.status).toEqual(200);
+    for (let vendor of Object.keys(env.vendors)) {
+      const m = res.body[vendor];
+      expect(Number(m.percentile50)).not.toBeNaN();
+      expect(Number(m.percentile75)).not.toBeNaN();
+      expect(Number(m.percentile95)).not.toBeNaN();
+      expect(Number(m.percentile99)).not.toBeNaN();
+    }
+    done();
+  });
+});
