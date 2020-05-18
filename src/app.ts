@@ -41,21 +41,14 @@ const canUseVendor = (vendor) => {
   const stats = vendorStats[vendor];
   const maxRequestsPerHour = env.vendors[vendor].maxRequestsPerHour;
 
-  if (stats.length === 0) return true;
+  if (stats.length <= maxRequestsPerHour) return true;
 
   // Get appropriate stat from the past
   // or simply the oldest one if we have < maxRequestsPerHour stats
-  const maxPastCall =
-    stats.length >= maxRequestsPerHour
-      ? stats.length - maxRequestsPerHour
-      : stats.length - 1;
+  const idx = stats.length - maxRequestsPerHour;
 
   // See if we reached maxRequestsPerHour calls in an hour
-  if (
-    diffInHours(stats[maxPastCall].callTime, stats[stats.length - 1].callTime) <
-      1 &&
-    stats.length >= maxRequestsPerHour
-  ) {
+  if (diffInHours(stats[idx].callTime, stats[stats.length - 1].callTime) < 1) {
     return false;
   } else {
     return true;
