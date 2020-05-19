@@ -94,19 +94,19 @@ const getCountryByIP = async (ip: string): Promise<IAPIInfo> => {
       const url = vendorInfo.urlFormat.replace('%IP_ADDRESS%', ip);
       try {
         const res = await axios.get(url);
+
         const endTime = process.hrtime(startTime);
         const apiLatency = (endTime[0] * 1000000000 + endTime[1]) / 1000000;
+        updateVendorStats(apiLatency);
 
         ipCache[ipBClass] = res.data[vendorInfo.countryField];
-        const ret = {
+
+        return {
           success: true,
           countryName: res.data[vendorInfo.countryField],
           apiLatency,
           vendor,
         };
-
-        updateVendorStats(apiLatency);
-        return ret;
       } catch (err) {
         return {
           success: false,
@@ -140,7 +140,7 @@ app.get('/', (req, res) => {
 
 // Resolve IP into Country name
 app.get('/getIPCountry', async (req, res) => {
-  const ip = getClientIP(req) as string;
+  const ip = getClientIP(req);
   let ret: IAPIInfo;
 
   res.header('Content-Type', 'application/json');

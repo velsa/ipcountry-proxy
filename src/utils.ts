@@ -1,7 +1,7 @@
 import { IVendorStat } from './types';
 
 // Extract client IP from request
-export function getClientIP(req) {
+export function getClientIP(req): string {
   let ip =
     (req.headers['x-forwarded-for'] || '').split(',').pop().trim() ||
     req.connection.remoteAddress ||
