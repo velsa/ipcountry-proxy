@@ -183,4 +183,11 @@ app.get('/metrics', async (req, res) => {
   res.send(out);
 });
 
+// Show quert as JSON
+app.get('/test', async (req, res) => {
+  // console.log('req.query', req.query);
+  res.header('Content-Type', 'application/json');
+  res.status(200).send(req.query);
+});
+
 export default app;
